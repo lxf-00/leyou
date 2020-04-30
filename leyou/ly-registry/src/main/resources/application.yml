@@ -1,0 +1,21 @@
+# 注册中心： 端口
+server:
+  port: 8081
+
+# 注册中心名称：
+spring:
+  application:
+    name: ly-registry
+# 配置eureka
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+    server:
+        enable-self-preservation: false # 关闭自我保护
+        eviction-interval-timer-in-ms: 5000 # 每隔5秒进行一次服务列表清理
+
+
+
