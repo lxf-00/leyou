@@ -25,7 +25,26 @@ public class CategoryController {
      */
     @GetMapping("/list")
     public ResponseEntity<List<Category>> queryByPid(@RequestParam(name = "pid", required = true) Long pid){
-
         return ResponseEntity.ok(categoryService.queryByPid(pid));
+    }
+
+    /**
+     * 根据ids查询分类
+     * @param ids
+     * @return
+     */
+    @GetMapping("/list/ids")
+    public ResponseEntity<List<Category>> queryCategoryByIds(@RequestParam("ids") List<Long> ids){
+        return ResponseEntity.ok(categoryService.queryCategoryByIds(ids));
+    }
+
+    /**
+     * 根据cid3，查询所有上级分类信息
+     * @param cid3
+     * @return
+     */
+    @GetMapping("/all/level")
+    public ResponseEntity<List<Category>> queryAllByCid3(@RequestParam("cid3") Long cid3){
+        return  ResponseEntity.ok(categoryService.queryAllByCid3(cid3));
     }
 }

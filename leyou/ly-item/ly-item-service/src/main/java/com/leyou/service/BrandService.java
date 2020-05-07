@@ -131,4 +131,30 @@ public class BrandService {
         }
         return brands;
     }
+
+
+    /**
+     * 根据id查询品牌
+     * @return
+     */
+    public Brand queryBrandById(Long id) {
+        Brand brand = brandMapper.selectByPrimaryKey(id);
+        if(brand == null){
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brand;
+    }
+
+    /**
+     * 根据多个id查询品牌
+     * @param ids
+     * @return
+     */
+    public List<Brand> queryBrandByIds(List<Long> ids) {
+        List<Brand> brands = brandMapper.selectByIdList(ids);
+        if(CollectionUtils.isEmpty(brands)){
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brands;
+    }
 }
