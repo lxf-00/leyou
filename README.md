@@ -4,12 +4,16 @@ one E-commerce website project to practise, mainly be built by java language and
 ## 乐优商城项目
 ```
 总结说明：
-  1， 此部分是前端后台管理系统(商品管理模块的实现：分类管理、品牌管理、商品列表、规格参数)的前后端分离实现；
-  2， 前端：vuejs es6 vuetify webpack(mvvm)(熟悉但不精通)
-  3， 后端：spring cloud 微服务架构
-  4， nginx 实现反向代理 + FastDFS（分布式图片存储),mysql数据库（以上都有实现过电脑上）
-  5， 最后：项目是2018年的，对初学者是很好的练手项目
-  6， 前端vue页面中有很多bug，里面仍然有，非专业前端不要深究（耗费了很多时间去修改，血的教训）
+  第一部分： 后台管理系统（前后端分离）
+   1.1 前端(leyou-manage-web文件): 主要涉及es6,vuejs vuetify webpack 实现热部署；主要功能实现分类管理、品牌管理、商品列表、规格参数；
+   1.2 后端：spring cloud 微服务架构（基础微服务搭建： 注册中心eureka,网关zuul,商品服务item,图片上传微服务，通用工具类微服务);
+   1.3 nginx 实现反向代理 + FastDFS（分布式图片存储),mysql数据库（以上都有在电脑上实现过）；
+
+ 第二部分：门户系统（搜索微服务 elasticsearch)
+  1.1 前端（leyou-portal）: html live-server 实现热部署
+  1.2 后端： 搜索微服务search; 创建索引->从数据库中导入数据->查询->前端页面渲染
+
+注意：以下步骤都是学习中记录，会有点冗余；
 ```
 
 
@@ -143,3 +147,8 @@ one E-commerce website project to practise, mainly be built by java language and
     - 返回结果： PageResult<spu>
   - 新增页面（前端页面传递不了specification,后端接口已实现） todo： 以后改进
   - 更细页面（前端页面传递不了specification,后端接口已实现） todo： 以后改进
+
+### 13, Elasticsearch 全文搜索技术
+- 使用，端口导入数据到索引中（mysql 相关数据 ——> elasticsearch index）
+- 后端搜索功能的实现
+- 前端页面渲染
