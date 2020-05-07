@@ -18,6 +18,7 @@ zuul:
   retryable: true
   routes:
     item-service: /item/**
+    search-service: /search/**
     upload-service:
       path: /upload/**
       service-id: upload-service
