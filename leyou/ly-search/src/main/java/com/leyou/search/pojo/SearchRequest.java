@@ -65,7 +65,7 @@ public class SearchRequest {
     public String toString() {
         return "SearchRequest{" +
                 "key='" + key + '\'' +
-                ", page=" + page +
+                ", controller=" + page +
                 ", sortBy='" + sortBy + '\'' +
                 ", descending=" + descending +
                 ", filter=" + filter +
