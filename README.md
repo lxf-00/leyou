@@ -152,3 +152,16 @@ one E-commerce website project to practise, mainly be built by java language and
 - 使用，端口导入数据到索引中（mysql 相关数据 ——> elasticsearch index）
 - 后端搜索功能的实现
 - 前端页面渲染
+
+### 14, 商品详情页及页面静态化
+- 后端渲染好页面，返回前端（thymeleaf)
+- 页面静态化（解决高并发问题）
+
+### 15,RabbitMQ及数据同步
+- 避免消息丢失
+  - ack(消费者确认)
+  - 交换机持久化
+  - 队列持久化
+  - 消息持久化
+  - 生产者确认机制
+- 后端代码处理（item 消息发出者； search 、page 微服务消息处理者）
