@@ -9,6 +9,7 @@ import com.leyou.mapper.*;
 import com.leyou.pojo.*;
 import com.leyou.pojo.Stock;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,9 @@ public class GoodsService {
 
     @Autowired
     private StockMapper stockMapper;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     /**
      * 查询 - 分页查询商品详情
@@ -114,6 +118,7 @@ public class GoodsService {
         }
         // 新增sku和stock
         saveSkuAndStock(spuBo.getSkus(), spuBo.getId());
+        amqpTemplate.convertAndSend("item.insert", spuBo.getId());
     }
 
     // 新增sku和stock
@@ -215,6 +220,8 @@ public class GoodsService {
             skuMapper.deleteByPrimaryKey(spuBo.getId());
         }
         updateSkuAndStock(spuBo.getSkus(), spuBo.getId());
+        // 发送mq信息
+        amqpTemplate.convertAndSend("item.update", spuBo.getId());
     }
     // 更新sku和stock
     private void updateSkuAndStock(List<Sku> skus, Long spuId) {
@@ -249,4 +256,16 @@ public class GoodsService {
 
     }
 
+    /**
+     * 根据spu id 查询spu
+     * @param id
+     * @return
+     */
+    public Spu querySpuById(Long id) {
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        if(spu == null){
+            throw new LyException(ExceptionEnum.INVALID_SPU_ERROR);
+        }
+        return spu;
+    }
 }

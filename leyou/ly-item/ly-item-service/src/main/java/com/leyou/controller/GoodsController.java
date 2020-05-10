@@ -2,6 +2,7 @@ package com.leyou.controller;
 
 import com.leyou.common.vo.PageResult;
 import com.leyou.pojo.Sku;
+import com.leyou.pojo.Spu;
 import com.leyou.pojo.SpuBo;
 import com.leyou.pojo.SpuDetail;
 import com.leyou.service.GoodsService;
@@ -80,5 +81,15 @@ public class GoodsController {
     public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo){
         goodsService.updateGoods(spuBo);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /**
+     * 根据spu id 查询spu
+     * @param id
+     * @return
+     */
+    @GetMapping("spu/{id}")
+    public ResponseEntity<Spu> querySpuById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(goodsService.querySpuById(id));
     }
 }
