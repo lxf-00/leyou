@@ -165,3 +165,8 @@ one E-commerce website project to practise, mainly be built by java language and
   - 消息持久化
   - 生产者确认机制
 - 后端代码处理（item 消息发出者； search 、page 微服务消息处理者）
+
+### 16，短信微服务
+- 容联云短信
+- 结合RabbitMQ实现监听;
+- 使用redis实现对单个手机号进行发送验证码限流
