@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+      host: 127.0.0.1
+      username: leyou
+      password: leyou
+      virtual-host: /leyou
+  redis:
+    host: 172.16.36.164
+server:
+  port: 8087
+
+# sms属性配置
+ly:
+  sms:
+    severIp: sandboxapp.cloopen.com   # 沙盒环境，生产环境为app.cloopen.com
+    serverPort: 8883                  # 端口（不区分沙盒和生产环境）
+    accountSId: 8a216da86f9cc12f016fa8cbbd140bc8  # 注册用户id
+    accountToken: fe0952504c9e42cab78ecc08e9084307  # 账户token
+    appId: 8a216da871bf71a10172019d03361843        # 应用id
+    templateId: 1                                  # 模板id
