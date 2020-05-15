@@ -11,7 +11,15 @@ one E-commerce website project to practise, mainly be built by java language and
 
  第二部分：门户系统（搜索微服务 elasticsearch)
   1.1 前端（leyou-portal）: html live-server 实现热部署
-  1.2 后端： 搜索微服务search; 创建索引->从数据库中导入数据->查询->前端页面渲染
+  1.2 后端： 搜索微服务search; 创建索引->从数据库中导入数据->查询->前端页面渲染；
+            页面静态化微服务; 数据后台渲染->生成静态页面->nginx代理->返回前端；
+            Rabbitmq实现监听：商品微服务（发生更改） 搜索微服务、页面静态化微服务监听变化后更新；
+            短信微服务：容联云短信；结合rabbitmq实现监听；结合redis实现单个手机号码的限流；
+            用户微服务、授权微服务： Jwt + rsa 实现用户登录授权；
+            购物车微服务：Redis实现基本的增删改查；
+
+            
+
 
 注意：以下步骤都是学习中记录，会有点冗余；
 ```
@@ -170,3 +178,21 @@ one E-commerce website project to practise, mainly be built by java language and
 - 容联云短信
 - 结合RabbitMQ实现监听;
 - 使用redis实现对单个手机号进行发送验证码限流
+
+### 17. 用户微服务 - 用户注册
+- 用户注册：数据校验；调用短信微服务；
+- 后台注册信息验证（hibernate.validator);
+- 注册: 密码加密储存（md5)
+
+### 18. 授权微服务
+- Jwt + rsa；
+- 登录授权；
+
+### 19. 用户微服务 - 用户登录
+- 校验填写用户信息是否已经注册；
+- Y： 授权 - 生成token,写入cookie(依此判断用户是否登录)；返回首页；
+- N： 什么也不做；
+- 网关进行相关过滤(登录与否能访问的具体页面与否问题)；
+
+### 20. 购物车微服务
+- 使用redis实现购物车的增删改查
