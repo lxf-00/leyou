@@ -19,10 +19,15 @@ zuul:
   routes:
     item-service: /item/**
     search-service: /search/**
+    user-service: /user/**
+    auth-service: /auth/**
+    cart-service: /cart/**
     upload-service:
       path: /upload/**
       service-id: upload-service
       strip-prefix: false
+  add-host-header: true
+  sensitive-headers:
 
 ribbon:
   ConnectTimeout: 250 # 连接超时时间(ms)
@@ -38,4 +43,16 @@ hystrix:
         isolation:
           thread:
             timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+ly:
+  jwt:
+    pubKeyPath: /Users/lxf/Desktop/rsa/rsa.pub # 公钥地址
+    cookieName: LY_TOKEN
+  filter:
+    allowPaths:
+     - /api/auth
+     - /api/search
+     - /api/user/register
+     - /api/user/check
+     - /api/user/code
+     - /api/item
 

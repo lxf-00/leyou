@@ -10,11 +10,14 @@ import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
+import org.springframework.util.StringUtils;
 
 
+import javax.lang.model.element.VariableElement;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * @author: HuYi.Zhang
@@ -85,9 +88,9 @@ public class JsonUtils {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    static class User{
-         String name;
-         Integer age;
+    static class User {
+        String name;
+        Integer age;
     }
 
     public static void main(String[] args) {
@@ -102,24 +105,39 @@ public class JsonUtils {
         // System.out.println("user1 = " + user1);
 
         // 反序列化（列表）： parseList
-        /*jsonStr = "[3,6,2,5]";
+        /*String jsonStr = "[1,2,3,4,5]";
         List<Integer> list = parseList(jsonStr, Integer.class);
         System.out.println("list = " + list);*/
+
 
         // 反序列化（集合）：parseMap
         //language=JSON
         /*String json = "{\"name\" : \"jack\", \"age\" : \"23\"}\n";
         Map<String, String> map = parseMap(json, String.class, String.class);
         System.out.println("map = " + map);*/
-
+        
         // 反序列化（复杂类型）： nativeRed
-        String json = "[{\"name\" : \"jack\", \"age\" : \"23\"}\n]";
-        List<Map<String, String>> maps = nativeRead(json, new TypeReference<List<Map<String, String>>>() {
+//        String json = "[{\"name\" : \"jack\", \"age\" : \"23\"}\n]";
+//        List<Map<String, String>> maps = nativeRead(json, new TypeReference<List<Map<String, String>>>() {
+//        });
+//        for (Map<String, String> map : maps) {
+//            System.out.println("map = " + map);
+//        }
+
+        String json = "[{\"group\":\"主体\", \"params\":[{\"k\":\"品牌\", \"v\":\"华为\"},{\"k\":\"型号\",\"v\":\"v3.0\" }]},{\"group\":\"规格\", \"params\":[{\"k\":\"重量\", \"v\":\"132\"},{\"k\":\"型号\",\"v\":\"v3.0\" }]}]";
+        List<Map<String, Object>> maps = nativeRead(json, new TypeReference<List<Map<String, Object>>>() {
         });
-        for (Map<String, String> map : maps) {
-            System.out.println("map = " + map);
+        for (Map<String, Object> map : maps) {
+            List<Map<String,String>> o = (List<Map<String,String>>)map.values().toArray()[1];
+//            System.out.println("o = " + o);
+            List<String> key = o.stream().map(o1 -> {
+                String k = o1.get("k");
+                return k;
+            }).collect(Collectors.toList());
+            System.out.println("key = " + key);
         }
     }
+
 
 }
 

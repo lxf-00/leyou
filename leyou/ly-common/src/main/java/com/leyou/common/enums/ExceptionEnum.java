@@ -32,8 +32,13 @@ public enum  ExceptionEnum {
     SKU_NOT_FOUND(404, "商品SKU不存在"),
     STOCK_UPDATE_ERROR(500, "库存新增失败"),
     INVALID_SPU_ERROR(500, "无效商品SPU"),
+    INVALID_USER_DATA_TYPE(400, "无效的用户相关信息"),
+    INVALID_VERIFY_CODE(400, "无效的验证码"),
+    INVALID_USERNAME_PASSWORD(400, "用户名或密码错误!"),
+    CREATE_TOKEN_ERROT(500,"用户凭证生成失败"),
+    UNAUTHORIZED(403, "未授权"),
+    CART_NOT_FOUND(400, "购物车相关信息不存在"),
     ;
-
     private int code;
     private String msg;
 }
