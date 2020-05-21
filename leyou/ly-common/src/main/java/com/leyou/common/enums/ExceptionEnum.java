@@ -35,10 +35,18 @@ public enum  ExceptionEnum {
     INVALID_USER_DATA_TYPE(400, "无效的用户相关信息"),
     INVALID_VERIFY_CODE(400, "无效的验证码"),
     INVALID_USERNAME_PASSWORD(400, "用户名或密码错误!"),
-    CREATE_TOKEN_ERROT(500,"用户凭证生成失败"),
+    CREATE_TOKEN_ERROR(500,"用户凭证生成失败"),
     UNAUTHORIZED(403, "未授权"),
     CART_NOT_FOUND(400, "购物车相关信息不存在"),
+    CREATE_ORDER_ERROR(500, "创建订单失败"),
+    STOCK_NOT_ENOUGH(500, "库存不足"),
+    ORDER_NOT_FOUND(404, "订单不存在"),
+    ORDER_DETAIL_NOT_FOUND(404, "订单详情不存在"),
+    ORDER_STATUS_NOT_FOUND(404, "订单状态详情不存在"),
+    CREATE_PAYMENT_ERROR(500, "支付接入异常"),
+    ORDER_STATUS_ERROR(400, "订单状态不正确")
     ;
+
     private int code;
     private String msg;
 }
