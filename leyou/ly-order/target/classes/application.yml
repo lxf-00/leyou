@@ -1,0 +1,39 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://172.16.36.164:3306/leyou?characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    default-property-inclusion: non_null
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8081/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+mybatis:
+  type-aliases-package: com.leyou.order.pojo
+ly:
+  jwt:
+    pubKeyPath: /Users/lxf/Desktop/rsa/rsa.pub # 公钥地址
+    cookieName: LY_TOKEN
+  worker:
+    workerId: 1
+    dataCenterId: 1
+  pay:
+    pid: 2088102180514800
+    appid: 2016102100731943
+    keyPublic: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp8E4g8K+sWHUasgOJGWmJtSDNjoC59/i5MPqmI0FCVXUrBd2JRot7CL9tnLRfW/z4N4Jw2bb9kMbUz5t8jIU9w82aDEbNopPclMXrOE6i7aT5s6es1U3Hi8dNik+AShRYlr1RbrgsvxAEFK/7YV1Ku3dGY1eGdpPQu+29hAQLDPsVAiRVI909eqh7fcmzOOrfb3zGol6xih0Jv6hPtF39zBg/GzBNQsjuI9isTNXTCziHJaAwIZ59edT5mU46lkpTEsVm7xJRxiqZ4x/hb4oKYs96CLsPq2w1obtIDG2u1uSnfhoIyD7J+pdyqWAhJZSXLv/9TvWIY5JjJUrt1ju/wIDAQAB
+    keyPrivate: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDHhNLikbx+ZU5psGI0TlYqOHkwpKAvEKkaVDwQXfpnCeaASTGR51Bc1d5LzWGZAlBgIdwviLVn8U6sZPOqI8kgp0Kovk2oG+UrO0mpSAAy92QnaxSdbr5aZxx20KQDyIc3PnjLLmq1cqNrZkwRRQwRnqJ3BZEHqWkAY/d16PpbUZ6d0m2erMlZQV18g2BergM7Lhesy5deBtanMaYkqUj1uPCkEchdHImoPFdQEhDM5z1juSofm30ddJrW21a5RKamThwqeMvJu2uXuJDlFuB0xOBzq4oDxweMAOhLFCgJ69rlKKxeZY1eG4a0L++IOUdojnd24D9Lx7fcWJHcf4bhAgMBAAECggEAMaXHpEGHmhwzavFNPp7PqinrXkNY6N1IdxjG6Xu5N7Kq/Pk5sIjS4ocFje9Jff2paoKCfAGUwoy1ewiT6Z6GCe4VFFBmmpJ2cE+MgOc9xXDyJyzqMFLCY1SNLLO2XIqluwV8oXKncwdXyv3lp9Z6rle/Lcbg0/s/+azmgxy6T8aLIg+tpPtUwfgObjv57lyoaK8iVq72FpYqwuBB789v5DSaslVET5TzFy0uZTHyqR0AWGsxvMZTrv0GseS8N3OO7w6HQx5auKB4hZgyqvYaYD936QGafg7GT6gZm+OgYuv68BhDzSxUo6VD7O9rbyswLt3s0CMwDUv7t/2qPIlbwQKBgQDn8y4n+a3TgV+n35/+Ke4VGA0pzbUZV6bt66srk7upxnUoN50vqnyQ7Jl6IQxScy/l8v3sin+h4u0HU7LtRhzdUHdMvKDvSgGrWMD7A6DpTgu63lLXQ0Rnn+6eDMo+kyVVaNLmQGq78AvVQVvKt9YOIZAYdT8z+Z7tFFZSt7u6rQKBgQDcNM0XS1CPyX1c2lK1vplFJRUTtL8DDighGkrwnNZEpS3SvPRVz82UM8Bp/LijXW0ZcW3pIPGnR5Q7z1UmInjgFmWfvqFUYingzV3ON7lRyPJo83JjQ3kTGyCGFWRn0qIi1uSABPycTxNHbB7L/I0tsQPWx5wkvmkzNB0WGzoXhQKBgQDm6bXdnjdrBLUSDxLcmSmoXlVcdKoCHLzWx3OU4nJFRomEDDm0Jmn0bVctupDl1D6vEgWw4wDFTYDjdnP+u3oo6d6ayn79OhQHXUhhnO8o1MXgt0yJeTI0Z4fKWLlPKnZUXRL4ntCjYQqmt3aGjhXP46Hsd20AdVW+eCyoFLoT0QKBgQCKeTmvOFFE2jPXPANe/qhrbtI+Ph8P0MszZdFSVY34RNb3+pK7k513YMPS4nVJZerBYS74txq/UqfIpKyq+mqAoBTvy3SwF7q1/u7KSwhigbbOgKih+0Ab36coKjOlhjMnLXMrffdMY/1/oGINbJdq8DG10nhCMur8o/zWdfCl8QKBgQCJYME7SLSzuZCF01gETWUut3OugZE4wVoB797dpgpKXGDxfR0LRawYL3LuK5S3dD+L3bX1SVTc76Xz4zP5PBirGjOzpT2ZCGcGFiOHyxroqG5ftuDb/8RrcNyEJ55v3LVNOHZq+yrP+pDZkNfBmRMzLOU7uxOpxKW95vduhFEsFQ==
+    notifyUrl: http://akcs9w.natappfree.cc/notify
+    returnUrl:
+    signType: RSA2
+    inputCharset: UTF-8
+    test: true
