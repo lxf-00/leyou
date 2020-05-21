@@ -2,6 +2,7 @@ package com.leyou.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.leyou.common.dto.CartDTO;
 import com.leyou.common.enums.ExceptionEnum;
 import com.leyou.common.exception.LyException;
 import com.leyou.common.vo.PageResult;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class GoodsService {
+
 
     @Autowired
     private SpuMapper spuMapper;
@@ -267,5 +269,33 @@ public class GoodsService {
             throw new LyException(ExceptionEnum.INVALID_SPU_ERROR);
         }
         return spu;
+    }
+
+    /**
+     * 根据sku id集合查询所有sku
+     * @param ids
+     * @return
+     */
+    public List<Sku> querySkuByIds(List<Long> ids) {
+        List<Sku> skus = skuMapper.selectByIdList(ids);
+        if(CollectionUtils.isEmpty(skus)){
+            throw new LyException(ExceptionEnum.SKU_NOT_FOUND);
+        }
+        return skus;
+    }
+
+    /**
+     * 减库存
+     * 乐观锁
+     * @param carts
+     */
+    @Transactional
+    public void decreaseStock(List<CartDTO> carts) {
+        for (CartDTO cart : carts) {
+            int count = stockMapper.decreaseStock(cart.getSkuId(), cart.getNum());
+            if (count != 1) {
+                throw new LyException(ExceptionEnum.STOCK_NOT_ENOUGH);
+            }
+        }
     }
 }
