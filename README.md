@@ -9,19 +9,17 @@ one E-commerce website project to practise, mainly be built by java language and
    1.2 后端：spring cloud 微服务架构（基础微服务搭建： 注册中心eureka,网关zuul,商品服务item,图片上传微服务，通用工具类微服务);
    1.3 nginx 实现反向代理 + FastDFS（分布式图片存储),mysql数据库（以上都有在电脑上实现过）；
 
- 第二部分：门户系统（搜索微服务 elasticsearch)
+ 第二部分：门户系统（
   1.1 前端（leyou-portal）: html live-server 实现热部署
-  1.2 后端： 搜索微服务search; 创建索引->从数据库中导入数据->查询->前端页面渲染；
-            页面静态化微服务; 数据后台渲染->生成静态页面->nginx代理->返回前端；
-            Rabbitmq实现监听：商品微服务（发生更改） 搜索微服务、页面静态化微服务监听变化后更新；
-            短信微服务：容联云短信；结合rabbitmq实现监听；结合redis实现单个手机号码的限流；
-            用户微服务、授权微服务： Jwt + rsa 实现用户登录授权；
-            购物车微服务：Redis实现基本的增删改查；
+  1.2 后端： 搜索微服务(elasticsearch):创建索引->从数据库中导入数据->查询->前端页面渲染；
+            页面静态化微服务(thymeleaf): 数据后台渲染->生成静态页面->nginx代理->返回前端；
+            消息中间件（Rabbitmq): 商品微服务（发生更改） 搜索微服务、页面静态化微服务监听变化后更新；
+            短信微服务(容联云短信 + Redis): 结合rabbitmq实现监听；结合redis实现单个手机号码的限流；
+            用户微服务、授权微服务（Jwt + rsa): 实现用户登录授权, 授权微服务
+            购物车微服务（Redis): Redis实现基本的增删改查；
+            订单微服务: alipay
 
-            
-
-
-注意：以下步骤都是学习中记录，会有点冗余；
+以下步骤，学习中记录，供参考         
 ```
 
 
@@ -60,8 +58,7 @@ one E-commerce website project to practise, mainly be built by java language and
   - Elasticsearcg-5.6.8
   - nginx - 1.10.2
   - FastDFS -5.0.8
-  - MyCat
-  - Thymelear
+  - Thymeleaf
   - jwt
 - 域名说明
   - 一级域名： www.leyou.com
@@ -196,3 +193,8 @@ one E-commerce website project to practise, mainly be built by java language and
 
 ### 20. 购物车微服务
 - 使用redis实现购物车的增删改查
+
+### 21. 订单微服务
+- 创建订单
+- alipay (egzosn/pay-java-parent:https://github.com/egzosn/pay-java-parent)，沙箱环境 + 即时支付(跳转到阿里收银台)
+- 回调处理：验证 -> 判断状态 -> 订单状态更新 （todo)
